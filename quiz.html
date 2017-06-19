@@ -4,20 +4,35 @@
 	<title>Quiz App</title>
 </head>
 <body>
-	<div class = "startPage">
+	<div class="start-page">
 		<h1>US State Capitals Quiz</h1>
-		<button class="startButton">
-			<span class="startButtonText">Start Quiz</span>
-		</button>
+		<button type='button' class='start-quiz'>Start Quiz</button>
 	</div>
-	<div class = "questionPage">
-		
+	<div class="question-page" hidden>
+		<form class='question-form' action='/some-endpoint' method='post'> 
+			<fieldset class='question'>
+				<legend class='question-text'>Question 1</legend>
+				<input type='radio' name='choice' id='choice-0' value='0'>
+				<label for='choice-0'></label>
+				<input type='radio' name='choice' id='choice-1' value='1'>
+				<label for='choice-1'></label>
+				<input type='radio' name='choice' id='choice-2' value='2'>
+				<label for='choice-2'></label>
+				<input type='radio' name='choice' id='choice-3' value='3'>
+				<label for='choice-3'></label>
+			</fieldset>
+			<button type='submit'>Submit</button>
+		</form>
 	</div>
-	<div class = "resultsPage">
-		
+	<div class = "feedback-page" hidden>
+		<p class='feedback'>correct or incorrect</p>
+		<p class='correction'>correct answer. hidden if correct</p>
+		<p class='score'>current score. x correct, y incorrect</p>
+		<button type='button'>Next</button>
 	</div>
-	<div class = "finalPage">
-		
+	<div class = "final-page" hidden>
+		<p class='score'>final score. x correct, y incorrect</p>
+		<button type='button'>Restart</button>
 	</div>
 </body>
 </html>

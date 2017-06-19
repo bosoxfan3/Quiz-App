@@ -2,7 +2,7 @@ const state = {
 	questions: [
 		{
 			text: 'What is the capital of California?',
-			choices: ['Seattle', 'Portland', 'Las Vegas', 'Sacramento'],
+			choices: ['San Diego', 'San Francisco', 'Los Angeles', 'Sacramento'],
 			correctChoiceIndex: 3
 		},
 		{
@@ -26,9 +26,9 @@ const state = {
 			correctChoiceIndex: 0
 		}
 	],
-	view: 'Start',
+	view: 'Start' || 'Question' || 'Feedback' || 'Final',
 	current: 0,
-	score: '0 correct, 0 incorrect',
+	score: 0,
 }
 
 //start changes view from "start" to "question"

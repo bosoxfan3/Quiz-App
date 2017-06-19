@@ -22,7 +22,7 @@ const state = {
 		},
 		{
 			text: 'What is the capital of New York?',
-			choices: ['Albany', 'New York City', 'Buffalo', 'Syracuse']
+			choices: ['Albany', 'New York City', 'Buffalo', 'Syracuse'],
 			correctChoiceIndex: 0
 		}
 	],
@@ -30,6 +30,44 @@ const state = {
 	current: 0,
 	score: 0,
 }
+
+function submitHandler() {
+	$(".start-quiz").click(function(){
+		console.log("hello there");
+		$(".start-page").attr("hidden", "true");
+		$(".question-page").removeAttr("hidden");
+	});
+}
+submitHandler();
+
+function renderQuestion() {
+	let result = "";
+	for (let i = 0; i < state.questions.length; i++) {
+	let questionHtml = `<div class="question-page" hidden>
+		<form class='question-form' action='/some-endpoint' method='post'> 
+			<fieldset class='question'>
+				<legend class='question-text'>${state.questions[i]["text"]}</legend>
+				<input type="radio" name="choice" id="choice-0" value="0">
+				<label for="choice-0">${state.questions[i]["choices"][0]}</label>
+				<input type='radio' name='choice' id='choice-1' value='1'>
+				<label for='choice-1'>${state.questions[i]["choices"][1]}</label>
+				<input type='radio' name='choice' id='choice-2' value='2'>
+				<label for='choice-2'>${state.questions[i]["choices"][2]}</label>
+				<input type='radio' name='choice' id='choice-3' value='3'>
+				<label for='choice-3'>${state.questions[i]["choices"][3]}</label>
+			</fieldset>
+			<button type='submit'>Submit</button>
+		</form>
+	</div>`;
+		result += questionHtml;
+	}
+	$(".question-page").replaceWith(result);
+	//console.log(result);
+}
+//result = "";
+//result += html
+//js-results.append(result)
+renderQuestion();
 
 //start changes view from "start" to "question"
 //next compares "current" to "questions.length"

@@ -31,22 +31,11 @@ const state = {
 	score: 0,
 }
 
-function submitHandler() {
-	$(".start-quiz").click(function(){
-		console.log("hello there");
-		$(".start-page").attr("hidden", "true");
-		$(".question-page").removeAttr("hidden");
-	});
-}
-submitHandler();
 
 function renderQuestion() {
 	let result = "";
-	for (let i = 0; i < state.questions.length; i++) {
-		//current, let i refer to the current count
-	let questionHtml = `<div class="question-page" hidden>
-		<form class='question-form' action='/some-endpoint' method='post'> 
-			<fieldset class='question'>
+	let i = state.current;
+	let questionHtml = `
 				<legend class='question-text'>${state.questions[i]["text"]}</legend>
 				<input type="radio" name="choice" id="choice-0" value="0">
 				<label for="choice-0">${state.questions[i]["choices"][0]}</label>
@@ -56,16 +45,31 @@ function renderQuestion() {
 				<label for='choice-2'>${state.questions[i]["choices"][2]}</label>
 				<input type='radio' name='choice' id='choice-3' value='3'>
 				<label for='choice-3'>${state.questions[i]["choices"][3]}</label>
-			</fieldset>
-			<button type='submit'>Submit</button>
-		</form>
-	</div>`;
+			`;
 		result += questionHtml;
-	}
-	$(".question-page").replaceWith(result);
-	//console.log(result);
+	$(".question").append(result);
+	$(".start-page, .feedback-page").attr("hidden", "true");
+		$(".question-page").removeAttr("hidden");
 }
-renderQuestion();
+
+
+function renderFeedback() {
+	console.log('i am here');
+	$(".question-page, .start-page").attr("hidden", "true");
+	$('.feedback-page').removeAttr('hidden');
+	state.current++
+}
+
+$(document).ready(function() {
+	$(".start-quiz").click(function(){
+		renderQuestion();
+	});
+	$('form').submit(function(evt) {
+		evt.preventDefault();
+		renderFeedback();
+	})
+})
+
 
 //start changes view from "start" to "question"
 //next compares "current" to "questions.length"

@@ -17,11 +17,12 @@
 			<button type='submit'>Submit</button>
 		</form>
 	</div>
-	<div class = "feedback-page">
-		<p class='feedback'>correct or incorrect</p>
-		<p class='correction'>correct answer. hidden if correct</p>
+	<div class = "feedback-page" hidden>
+		<p class='feedback-correct' hidden>correct</p>
+		<p class='feedback-incorrect' hidden>incorrect</p>
+		<p class='correction' hidden>correct answer. hidden if correct</p>
 		<p class='score'>current score. x correct, y incorrect</p>
-		<button type='button'>Next</button>
+		<button type='button' class='next-button'>Next</button>
 	</div>
 	<div class = "final-page" hidden>
 		<p class='score'>final score. x correct, y incorrect</p>

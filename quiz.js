@@ -54,10 +54,36 @@ function renderQuestion() {
 
 
 function renderFeedback() {
-	console.log('i am here');
+	//console.log('i am here');
 	$(".question-page, .start-page").attr("hidden", "true");
 	$('.feedback-page').removeAttr('hidden');
+	console.log(state.current);
+	findScore();
+}
+
+function nextButtonHandler() {
+	$(".question").children().remove();
 	state.current++
+	$(".feedback-page, .start-page").attr("hidden", "true");
+	if (state.current > state.questions.length) {
+		$(".final-page").removeAttr("hidden");
+	} else {
+		$(".question-page").removeAttr("hidden");
+		renderQuestion();
+		//$(result).replaceWith(result);
+	}
+}
+function findScore() {
+	if ($("input[name=choice]:checked").val() === state.questions[state.current].correctChoiceIndex) {
+		//$(".feedback-correct").removeAttr("hidden");
+		console.log("got it right");
+		score++;
+	}
+}
+//state.questions.current.correctChoiceIndex
+
+function displayCorrectAnswer() {}
+function renderFinalPage() {
 }
 
 $(document).ready(function() {
@@ -68,8 +94,14 @@ $(document).ready(function() {
 		evt.preventDefault();
 		renderFeedback();
 	})
+	$(".next-button").click(function() {
+		nextButtonHandler();
+	})
 })
 
+//score iterate
+//questions iterate
+//if answer incorrect, show ""
 
 //start changes view from "start" to "question"
 //next compares "current" to "questions.length"

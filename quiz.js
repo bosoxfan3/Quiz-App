@@ -32,6 +32,7 @@ const state = {
 }
 
 
+
 function renderQuestion() {
 	let result = "";
 	let i = state.current;
@@ -59,6 +60,7 @@ function renderFeedback() {
 	$('.feedback-page').removeAttr('hidden');
 	console.log(state.current);
 	findScore();
+	displayScore();
 }
 
 function nextButtonHandler() {
@@ -76,16 +78,24 @@ function nextButtonHandler() {
 
 function findScore() {
 	let userAnswer = $("input[name=choice]:checked").val();
-	let correctAnswer = state.questions[state.current].correctChoiceIndex;
+	let currentQuestion = state.questions[state.current];
+	let correctChoiceNumber = currentQuestion.correctChoiceIndex;
 	console.log(typeof userAnswer);
 	console.log(typeof correctAnswer);
-	if (correctAnswer === parseInt(userAnswer, 10)) {
-		$(".feedback-correct").removeAttr("hidden");
+	if (correctChoiceNumber === parseInt(userAnswer, 10)) {
+		$(".feedback").empty().append(`<p>Correct!</p>`);
 		console.log("got it right");
 		state.score++;
+	} else {
+		$('.feedback').empty().append(`<p>Incorrect. The correct answer was ${currentQuestion.choices[correctChoiceNumber]}</p>`);
 	}
 }
-//state.questions.current.correctChoiceIndex
+
+function displayScore() {
+	let incorrectScore = Math.abs(state.score-(state.current+1))
+	let scoreString = `<p class='score'>${state.score} Correct. ${incorrectScore} Incorrect.</p>`;
+	$('.progress').empty().append(scoreString);
+}
 
 function displayCorrectAnswer() {}
 function renderFinalPage() {

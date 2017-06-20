@@ -67,7 +67,10 @@ function nextButtonHandler() {
 	$(".question").children().remove();
 	state.current++
 	$(".feedback-page, .start-page").attr("hidden", "true");
-	if (state.current > state.questions.length) {
+	console.log(state.current);
+	console.log(state.questions.length);
+	if (state.current >= state.questions.length) {
+		console.log("final page!");
 		$(".final-page").removeAttr("hidden");
 	} else {
 		$(".question-page").removeAttr("hidden");
@@ -97,8 +100,14 @@ function displayScore() {
 	$('.progress').empty().append(scoreString);
 }
 
-function displayCorrectAnswer() {}
 function renderFinalPage() {
+	$(".final-page").removeAttr("hidden");
+	displayScore();
+}
+
+function returnToStart() {
+	$(".final-page").attr("hidden", "true");
+	$(".start-page").removeAttr("hidden");
 }
 
 $(document).ready(function() {
@@ -112,6 +121,10 @@ $(document).ready(function() {
 	$(".next-button").click(function() {
 		nextButtonHandler();
 	})
+	$(".restart-button").click(function(){
+		returnToStart();
+	})
+
 })
 
 //score iterate

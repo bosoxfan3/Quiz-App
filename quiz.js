@@ -43,6 +43,7 @@ submitHandler();
 function renderQuestion() {
 	let result = "";
 	for (let i = 0; i < state.questions.length; i++) {
+		//current, let i refer to the current count
 	let questionHtml = `<div class="question-page" hidden>
 		<form class='question-form' action='/some-endpoint' method='post'> 
 			<fieldset class='question'>
@@ -64,9 +65,6 @@ function renderQuestion() {
 	$(".question-page").replaceWith(result);
 	//console.log(result);
 }
-//result = "";
-//result += html
-//js-results.append(result)
 renderQuestion();
 
 //start changes view from "start" to "question"

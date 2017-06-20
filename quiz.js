@@ -73,11 +73,16 @@ function nextButtonHandler() {
 		//$(result).replaceWith(result);
 	}
 }
+
 function findScore() {
-	if ($("input[name=choice]:checked").val() === state.questions[state.current].correctChoiceIndex) {
-		//$(".feedback-correct").removeAttr("hidden");
+	let userAnswer = $("input[name=choice]:checked").val();
+	let correctAnswer = state.questions[state.current].correctChoiceIndex;
+	console.log(typeof userAnswer);
+	console.log(typeof correctAnswer);
+	if (correctAnswer === parseInt(userAnswer, 10)) {
+		$(".feedback-correct").removeAttr("hidden");
 		console.log("got it right");
-		score++;
+		state.score++;
 	}
 }
 //state.questions.current.correctChoiceIndex
